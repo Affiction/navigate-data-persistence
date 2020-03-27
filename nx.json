@@ -1,0 +1,22 @@
+{
+  "npmScope": "navigate-data-persistence",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "navigate-data-persistence": {
+      "tags": []
+    },
+    "navigate-data-persistence-e2e": {
+      "tags": [],
+      "implicitDependencies": ["navigate-data-persistence"]
+    }
+  }
+}

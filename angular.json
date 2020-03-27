@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "projects": {
+    "navigate-data-persistence": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/navigate-data-persistence",
+      "sourceRoot": "apps/navigate-data-persistence/src",
+      "prefix": "navigate-data-persistence",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/navigate-data-persistence",
+            "index": "apps/navigate-data-persistence/src/index.html",
+            "main": "apps/navigate-data-persistence/src/main.ts",
+            "polyfills": "apps/navigate-data-persistence/src/polyfills.ts",
+            "tsConfig": "apps/navigate-data-persistence/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/navigate-data-persistence/src/favicon.ico",
+              "apps/navigate-data-persistence/src/assets"
+            ],
+            "styles": ["apps/navigate-data-persistence/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/navigate-data-persistence/src/environments/environment.ts",
+                  "with": "apps/navigate-data-persistence/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "navigate-data-persistence:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "navigate-data-persistence:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "navigate-data-persistence:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/navigate-data-persistence/tsconfig.app.json",
+              "apps/navigate-data-persistence/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/navigate-data-persistence/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/navigate-data-persistence/jest.config.js",
+            "tsConfig": "apps/navigate-data-persistence/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/navigate-data-persistence/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "navigate-data-persistence-e2e": {
+      "root": "apps/navigate-data-persistence-e2e",
+      "sourceRoot": "apps/navigate-data-persistence-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/navigate-data-persistence-e2e/cypress.json",
+            "tsConfig": "apps/navigate-data-persistence-e2e/tsconfig.e2e.json",
+            "devServerTarget": "navigate-data-persistence:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "navigate-data-persistence:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/navigate-data-persistence-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/navigate-data-persistence-e2e/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "navigate-data-persistence"
+}
